@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import { StyleSheet, Text, Image, TextInput, View, Alert, Button,TouchableNativeFeedback } from 'react-native';
-require('./assets/treebackground.png');
-//import CreateBoard from './gameboard';
+
 
 export default class App extends React.Component {
   
@@ -118,21 +117,19 @@ class BlinkingClass extends Component {
   constructor(props) {
     super(props);
     this.state = {showText: true};
-    var timer = 0;
 
     // Change the state every second or the time given by User.
     setInterval(() => {
       this.setState(previousState => {
         return { showText: !previousState.showText };
       });
-      timer++;
     }, 
     // Define any blinking time.
     1000);
   }  
    render() {
     
-      let display = this.state.showText ? this.props.text : timer;
+      let display = this.state.showText ? this.props.text : ' ';
       return (
         <Text style = {{ textAlign: 'center', marginTop : 10,color:'white',fontSize:32 }}>{display}</Text>
       );
