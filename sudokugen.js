@@ -1,4 +1,0 @@
-class generate_grid{
-	
-	
-}
