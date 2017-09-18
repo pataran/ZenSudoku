@@ -1,5 +1,79 @@
 import React, {Component} from 'react';
 import { StyleSheet, Text, Image, TextInput, View, Alert, Button,TouchableNativeFeedback, TouchableHighlight } from 'react-native';
+import { StackNavigator } from 'react-navigation';
+
+class HomeScreen extends React.Component {
+  static navigationOptions = {
+    title: 'Zen Sudoku',
+  };
+  render() {
+    const {navigate} = this.props.navigation; 
+    return (
+      <View style={styles.container}>
+        <Button
+          style = {styles.playButton}
+          onPress={() => navigate('Difficulty')}
+          title="Play"
+        />  
+      </View>);
+  }
+}
+
+class DifficultyScreen extends React.Component{
+  static navigationOptions = {
+    title: 'Difficulty',
+  };
+  render(){
+    const {navigate} = this.props.navigation;
+    return(
+      <View style={styles.container}>
+        <Button
+          style = { styles.playButton }          
+          onPress={() => navigate('Game')}
+          title="EASY"
+          color="pink"
+        />
+        <Button
+          style = {styles.playButton}
+          onPress={() => navigate('Game')}
+          title="MEDIUM"
+          color="orange"
+        />
+        <Button
+          style = {styles.playButton}          
+          onPress={() => navigate('Game')}
+          title="HARD"
+          color="red"
+        />
+        <Button
+          style = {styles.playButton}          
+          onPress={() => navigate('Game')}
+          title="XTREME"
+          color="purple"
+          //disabled={true}
+        />
+      </View>
+    );
+  }
+}
+
+class GameScreen extends React.Component {
+  static navigationOptions = {
+    title: 'Game',
+  };
+  render() {
+    return <App />;
+  }
+}
+
+const MainNavigation = StackNavigator({
+  Home: { screen: HomeScreen },
+  Difficulty: {screen: DifficultyScreen} ,
+  Game: { screen: GameScreen },
+});
+
+export default MainNavigation;
+
 
 
 export default class App extends React.Component {
@@ -86,7 +160,7 @@ export default class App extends React.Component {
     return (
      <View style={styles.wrapper}>
         <View style={styles.timer}>
-       <BlinkingClass text= "blinkn" />
+       <BlinkingClass text= "00.00" />
         </View>
        <Image style={styles.background} source={require('./assets/background1.png')}>
       <View style={styles.wrapper}>  
@@ -239,6 +313,18 @@ const styles = StyleSheet.create({
   textUp:{
     flexDirection: 'column',
     color:'white',
+  },
+  
+  ///Navigation and Screens
+  container: {
+    flex: 2,
+    alignSelf: 'center',
+    //justifyContent: 'center',
+    marginTop: 20,
+  },
+
+  playButton: {
+
   },
 
 });
