@@ -34,10 +34,9 @@ export default class App extends React.Component {
 
       renderUserSelect.push(
       <TouchableNativeFeedback 
-          key={i}
+          key={"userNumSelection"+i}
           onPress={this._onPressButton}
           background={TouchableNativeFeedback.SelectableBackground()}>
-
           <View style={styles.userNumInputs}>
               <Text style={{margin: 5,color:"white",fontSize:16, opacity:1}}>{i}</Text>
           </View>
@@ -50,17 +49,28 @@ export default class App extends React.Component {
   
 
    for(var i = 0; i < 9; i++){
-     rows.push(<View key={i}style={styles.rows}>  
-                {cells}
-              </View>  
+     rows.push(<View key={"row"+i}style={styles.rows}>  
+                   <View key ={"cell"+((1*9^i)+i)} style ={styles.cell}/>
+                   <View key ={"cell"+((2*9^i)+i)} style ={styles.cell}/>
+                   <View key ={"cell"+((3*9^i)+i)} style ={styles.cell}/>
+                   <View key ={"cell"+((4*9^i)+i)} style ={styles.cell}/>
+                   <View key ={"cell"+((5*9^i)+i)} style ={styles.cell}/>
+                   <View key ={"cell"+((6*9^i)+i)} style ={styles.cell}/>
+                   <View key ={"cell"+((7*9^i)+i)} style ={styles.cell}/>
+                   <View key ={"cell"+((8*9^i)+i)} style ={styles.cell}/>
+                   <View key ={"cell"+((9*9^i)+i)} style ={styles.cell}/>
+                </View> 
       )
-        for(var j = 0; j < 9; j++){
-          cells.push(<View key ={j} style ={styles.cell}>
-                    <TextInput></TextInput>
-                     </View>
-                    )
-        } 
+
     }
+
+        // for(var j = 0; j < 9; j++){
+        //   cells.push(<View key ={"cell"+i} style ={styles.cell}>
+        //             <TextInput></TextInput>
+        //              </View>
+        //             )
+        // } 
+    
  
 
     return (
