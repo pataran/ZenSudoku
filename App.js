@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import { StyleSheet, Text, Image, TextInput, View, Alert, Button,TouchableNativeFeedback } from 'react-native';
+import { StyleSheet, Text, Image, TextInput, View, Alert, Button,TouchableNativeFeedback, TouchableHighlight } from 'react-native';
 
 
 export default class App extends React.Component {
@@ -40,38 +40,48 @@ export default class App extends React.Component {
           <View style={styles.userNumInputs}>
               <Text style={{margin: 5,color:"white",fontSize:16, opacity:1}}>{i}</Text>
           </View>
-
       </TouchableNativeFeedback> 
       ) 
     }
    }
+
    userNumSelection();
   
-
    for(var i = 0; i < 9; i++){
      rows.push(<View key={"row"+i}style={styles.rows}>  
+                   
                    <View key ={"cell"+((1*9^i)+i)} style ={styles.cell}/>
                    <View key ={"cell"+((2*9^i)+i)} style ={styles.cell}/>
                    <View key ={"cell"+((3*9^i)+i)} style ={styles.cell}/>
+                   
                    <View key ={"cell"+((4*9^i)+i)} style ={styles.cell}/>
                    <View key ={"cell"+((5*9^i)+i)} style ={styles.cell}/>
                    <View key ={"cell"+((6*9^i)+i)} style ={styles.cell}/>
+                   
                    <View key ={"cell"+((7*9^i)+i)} style ={styles.cell}/>
                    <View key ={"cell"+((8*9^i)+i)} style ={styles.cell}/>
                    <View key ={"cell"+((9*9^i)+i)} style ={styles.cell}/>
+                 
                 </View> 
-      )
-
+          )
     }
 
-        // for(var j = 0; j < 9; j++){
-        //   cells.push(<View key ={"cell"+i} style ={styles.cell}>
-        //             <TextInput></TextInput>
-        //              </View>
-        //             )
-        // } 
-    
- 
+   // console.log(rows.toString());
+
+  //  var celldom = rows.map(function(cell) {
+  //   console.log(cell.toString());
+  //   for(var key in cell){
+  //       for(var x in key){
+  //         console.log(x);
+  //      }
+  //    console.log(key.toString());
+  //    }
+  // });
+
+// var values = Array.prototype.map.call(rows, function(obj) {
+//   return obj.value;
+// });
+// console.log(values);
 
     return (
      <View style={styles.wrapper}>
@@ -83,9 +93,10 @@ export default class App extends React.Component {
         <View style={styles.gridContainer}>
           {rows}
         </View>
-        <View style={styles.userInputContainer}>
+      <View style={styles.userInputContainer}>
         {renderUserSelect}
-      </View>
+        <Text style={[styles.userNumInputs, styles.textUp]}> TAG </Text>
+        </View>
       </View> 
       </Image>
     </View>
@@ -94,8 +105,6 @@ export default class App extends React.Component {
     );
   }
 }
-
-
 
 class Cell extends React.Component {
   render() {
@@ -154,6 +163,7 @@ const styles = StyleSheet.create({
 
   gridContainer: {
     flex:3,
+    marginTop:20,
    // backgroundColor: 'yellow',
     
   },
@@ -167,16 +177,25 @@ const styles = StyleSheet.create({
   
   },
 
+  cellsLine:{
+    borderWidth:2,
+    borderColor:"black",
+    backgroundColor:"black",
+    width:1,
+    opacity: .5,
+    height:50,
+   },
+
   cell:{
-    width: 30,
-    height: 30,
+    width: 32,
+    height: 32,
     backgroundColor: 'green',
     justifyContent: 'space-around',
     alignItems: 'center',
+    borderRadius: 5,
     borderBottomWidth: 2,
     borderLeftWidth: 2,
     opacity: .5,
-    borderRadius: 5,
    },
 
    background:{
@@ -186,19 +205,28 @@ const styles = StyleSheet.create({
     // resizeMode: 'contain',
    },
 
+  
+
   userInputContainer:{
     flex:1,
     flexDirection:'row',
     justifyContent: 'space-around',
-    alignItems: 'flex-start',
-    //backgroundColor: 'green',
+    alignItems: 'center',
+   // backgroundColor: 'green',
+  },
+
+  userInputContainerInner:{
+    flexDirection:'column',
+    justifyContent: 'flex-end',
+    alignItems: 'flex-end',
+  //  backgroundColor: 'black',
   },
 
   userNumInputs:{   
     width: 35,
     height: 35, 
     backgroundColor: 'blue',
-    opacity: .5,
+    opacity: .8,
     borderRadius: 6,
     marginTop: 5,
   },
@@ -208,7 +236,10 @@ const styles = StyleSheet.create({
     height:50,
   },
 
-  
+  textUp:{
+    flexDirection: 'column',
+    color:'white',
+  },
 
 });
 
