@@ -74,17 +74,11 @@ const MainNavigation = StackNavigator({
 
 export default MainNavigation;
 
-
-
-export default class App extends React.Component {
+class App extends React.Component {
   
   constructor (){
     super();
     this.state = {gameStarted:false}
-  }
-
-  focusTextInput(){
-    this.focusTextInput.focus();
   }
 
   startGame(){
@@ -98,9 +92,6 @@ export default class App extends React.Component {
    var cells = [];
    var renderUserSelect = [];
  
-   function getId(cells){
-     console.log(cells);
-   }
 
    function userNumSelection(){
 
@@ -121,7 +112,10 @@ export default class App extends React.Component {
 
    userNumSelection();
   
-   for(var i = 0; i < 9; i++){
+    function generate_grid(){
+
+    for(var i = 0; i < 9; i++){
+
      rows.push(<View key={"row"+i}style={styles.rows}>  
                    
                    <View key ={"cell"+((1*9^i)+i)} style ={styles.cell}/>
@@ -139,28 +133,14 @@ export default class App extends React.Component {
                 </View> 
           )
     }
+  }
 
-   // console.log(rows.toString());
-
-  //  var celldom = rows.map(function(cell) {
-  //   console.log(cell.toString());
-  //   for(var key in cell){
-  //       for(var x in key){
-  //         console.log(x);
-  //      }
-  //    console.log(key.toString());
-  //    }
-  // });
-
-// var values = Array.prototype.map.call(rows, function(obj) {
-//   return obj.value;
-// });
-// console.log(values);
+  generate_grid();
 
     return (
      <View style={styles.wrapper}>
         <View style={styles.timer}>
-       <BlinkingClass text= "00.00" />
+       <BlinkingClass text= "Timer" />
         </View>
        <Image style={styles.background} source={require('./assets/background1.png')}>
       <View style={styles.wrapper}>  
@@ -168,40 +148,14 @@ export default class App extends React.Component {
           {rows}
         </View>
       <View style={styles.userInputContainer}>
-        {renderUserSelect}
-        <Text style={[styles.userNumInputs, styles.textUp]}> TAG </Text>
-        </View>
+          {renderUserSelect}
+          <Text style={[styles.userNumInputs, styles.textUp]}> TAG </Text>
+      </View>
       </View> 
       </Image>
     </View>
    
      
-    );
-  }
-}
-
-class Cell extends React.Component {
-  render() {
-    return (
-      <Text>{this.props.value}</Text>
-    );
-  }
-}
-
-class UselessTextInput extends Component {
-  constructor(props) {
-    super(props);
-    this.state = { text: 'Useless Placeholder' };
-  }
-
-
-  render() {
-    return (
-      <TextInput
-        style={{height: 40, borderColor: 'gray', borderWidth: 1}}
-        onChangeText={(text) => this.setState({text})}
-        value={this.state.text}
-      />
     );
   }
 }
@@ -229,6 +183,8 @@ class BlinkingClass extends Component {
     }
 }
 
+
+/////StyleSheets/////////////////////////////
 const styles = StyleSheet.create({
   wrapper: {
     flex: 4,
@@ -317,9 +273,9 @@ const styles = StyleSheet.create({
   
   ///Navigation and Screens
   container: {
-    flex: 2,
+    flex: 1,
     alignSelf: 'center',
-    //justifyContent: 'center',
+    justifyContent: 'center',
     marginTop: 20,
   },
 
