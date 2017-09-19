@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import { StyleSheet, Text, Image, TextInput, View, Alert, Button,TouchableNativeFeedback, TouchableHighlight } from 'react-native';
 import { StackNavigator } from 'react-navigation';
-
+ 
 class HomeScreen extends React.Component {
   static navigationOptions = {
     title: 'Zen Sudoku',
@@ -9,13 +9,21 @@ class HomeScreen extends React.Component {
   render() {
     const {navigate} = this.props.navigation; 
     return (
+      <View style={styles.wrapper}>
+        <Image resizeMode="stretch" style={[styles.background, styles.titlebackground]} source={require('./assets/backgroundpapercolor.png')}>
       <View style={styles.container}>
-        <Button
-          style = {styles.playButton}
+        <TouchableNativeFeedback 
+          key={"play"}
           onPress={() => navigate('Difficulty')}
-          title="Play"
-        />  
-      </View>);
+          background={TouchableNativeFeedback.SelectableBackground()}>
+          <Text style={styles.playButton}>Play</Text>      
+        </TouchableNativeFeedback> 
+        
+      </View>
+      </Image>
+      </View>
+      );
+     
   }
 }
 
@@ -91,7 +99,10 @@ class App extends React.Component {
    var rows = [];
    var cells = [];
    var renderUserSelect = [];
- 
+
+   function alertUser(){
+    Alert.alert("Button Pressed");
+   } 
 
    function userNumSelection(){
 
@@ -100,7 +111,7 @@ class App extends React.Component {
       renderUserSelect.push(
       <TouchableNativeFeedback 
           key={"userNumSelection"+i}
-          onPress={this._onPressButton}
+          onPress={()=> alertUser()}
           background={TouchableNativeFeedback.SelectableBackground()}>
           <View style={styles.userNumInputs}>
               <Text style={{margin: 5,color:"white",fontSize:16, opacity:1}}>{i}</Text>
@@ -140,7 +151,7 @@ class App extends React.Component {
     return (
      <View style={styles.wrapper}>
         <View style={styles.timer}>
-       <BlinkingClass text= "Timer" />
+       <BlinkingClass text= "0.0" />
         </View>
        <Image style={styles.background} source={require('./assets/background1.png')}>
       <View style={styles.wrapper}>  
@@ -232,7 +243,10 @@ const styles = StyleSheet.create({
      flex:1,
      width: '100%',
      height:'100%',
-    // resizeMode: 'contain',
+   },
+
+   titlebackground:{
+   
    },
 
   
@@ -280,7 +294,16 @@ const styles = StyleSheet.create({
   },
 
   playButton: {
+    width:100,
+    height:100,
+    fontWeight:"bold",
+    fontSize:42,
+    marginLeft:20,
+  },
 
+  header:{
+    alignSelf: 'center',
+    justifyContent: 'center',
   },
 
 });
