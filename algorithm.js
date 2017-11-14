@@ -49,6 +49,7 @@ var Sudoku = ( function (){
 
                 // Solve the game
                 isValid = _game.solveGame( 0, 0 );
+                return this.solutionArray;
             }
         };
     }
