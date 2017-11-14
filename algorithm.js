@@ -20,7 +20,6 @@ var Sudoku = ( function (){
 
 
     function init( config ) {
-       // conf = $.extend( {}, defaultConfig, config );
         _game = new Game( config );
 
         return {
@@ -63,6 +62,7 @@ var Sudoku = ( function (){
         this.validation = {};
 
         this.resetValidationMatrices();
+        this.solutionArray = {};
         return this;
     }
 
@@ -196,7 +196,6 @@ var Sudoku = ( function (){
             var cval, sqRow, sqCol, nextSquare, legalValues,
                 sectRow, sectCol, secIndex, gameResult;
 
-            this.recursionCounter++;
             nextSquare = this.findClosestEmptySquare( row, col );
             if ( !nextSquare ) {
                 // End of board
@@ -226,7 +225,6 @@ var Sudoku = ( function (){
                         return true;
                     } else {
                         // There was a problem, we should backtrack
-                        this.backtrackCounter++;
 
                         // Remove value from input
                         this.cellMatrix[sqRow][sqCol].val( '' );
@@ -238,6 +236,12 @@ var Sudoku = ( function (){
                 }
                 // If there was no success with any of the legal
                 // numbers, call backtrack recursively backwards
+                for(var i = 0; i <9;i++){
+                    for (var j=0; j <9; j++){
+                        this.solutionArray[counter] = this.matrix[i][j];
+                        counter++;
+                    }
+                }
                 return false;
             }
         },
